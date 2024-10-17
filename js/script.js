@@ -13,7 +13,7 @@ class Player {
 
     createDomElement() {
         this.domElement = document.createElement("img"); // Create an img element
-        this.domElement.src = '/images/player.png'; // Path to your player image
+        this.domElement.src = './images/player.png'; // Path to your player image
         this.domElement.style.width = this.width + "px"; // Set width
         this.domElement.style.height = this.height + "px"; // Set height
         this.domElement.style.position = "absolute"; // Positioning
