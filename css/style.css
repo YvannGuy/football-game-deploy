@@ -22,7 +22,7 @@ body {
     width: 600px;
     height: 800px;
     border: 2px solid white;
-    background-image: url('./images/soccer.png'); /* Change to your background image path */
+    background-image: url('../images/soccer.png'); /* Change to your background image path */
     background-size: cover; /* Cover the entire container */
     background-position: center; /* Center the image */
 }
