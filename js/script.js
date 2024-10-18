@@ -66,33 +66,30 @@ document.addEventListener("keydown", (event) => {
 
 // Store the interval ID to enable resetting game
 let gameInterval = setInterval(() => {
-    let gameOver = false; // Flag to track game over state
-
     ballsArray.forEach((ball) => {
-        [obstacle1, obstacle2].forEach((obstacle) => {
-            if ((ball.positionX + 430) < (obstacle.positionX + obstacle.width) &&
-                (ball.positionX + 430) > obstacle.positionX &&
-                ball.positionY < (obstacle.positionY + obstacle.height) &&
-                (ball.positionY + ball.height) > obstacle.positionY) {
-                
-                if (!gameOver) { // Check if game is already over
-                    gameOver = true; // Set the flag to true
-                    console.log('Game over');
-                    clearInterval(gameInterval); // Stop the game loop
-
-                    // Optionally display a message or navigate to game over page
-                    setTimeout(() => {
-                        location.href = "/gameover.html"; // Navigate to game over page
-                    }, 1000); // Delay for 1 second to allow message to be seen
-                }
-            }
-        });
-    });
-
-    if (!gameOver) { // Only move the balls if the game is not over
-        ballsArray.forEach(ball => ball.moveUp()); // Move the balls upwards
+    [obstacle1, obstacle2].forEach((obstacle) => {
+    
+    // Collision detection - check if horizontally and vertically aligned
+    // + 430 is to adjust to the obstacle's starting positionX
+    if ((ball.positionX + 430) < (obstacle.positionX + obstacle.width) &&
+    (ball.positionX + 430) > obstacle.positionX &&
+    ball.positionY < (obstacle.positionY + obstacle.height) &&
+    (ball.positionY + ball.height) > obstacle.positionY) {
+    
+    console.log('Game over');
+    
+    // Stop the game loop before asking for replay
+    clearInterval(gameInterval);
+    
+    alert('Game over. Do you want to replay?');
+    
+    location.reload(); // Reload the entire page to restart the game
     }
-}, 50);
+    });
+    
+    ball.moveUp(); // Move the ball upwards
+    });
+    }, 50);
 
 
 //you need an obstacle class
