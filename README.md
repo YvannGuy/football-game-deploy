@@ -1,8 +1,9 @@
 <h1>Football Game</h1>
 
-<img src="./images/Image1.png" alt="Football Game Screenshot 1" width="300"/> 
-<img src="./images/Image2.png" alt="Football Game Screenshot 2" width="300"/>  
-
+<div style="display: flex; justify-content: flex-start;">
+    <img src="./images/Image1.png" alt="Football Game Screenshot 1" width="300" style="margin-right: 10px;"/> 
+    <img src="./images/Image2.png" alt="Football Game Screenshot 2" width="300"/>
+</div>
 
 <h2>Description</h2>
 
