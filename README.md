@@ -1,5 +1,9 @@
 Football Game
 
+![Football Game Screenshot 1](./images/image1.png) <!-- Local image 1 -->
+![Football Game Screenshot 2](./images/image2.png) <!-- Local image 2 -->
+
+
 Description
 
 The Football Game is an interactive game where the player controls a character that must shoot a ball towards the goal while avoiding obstacles. The objective of the game is to score goals by getting the ball into the goal while avoiding collisions with randomly appearing obstacles on the field.
@@ -38,6 +42,11 @@ Usage
 -  Press the spacebar to shoot the ball towards the goal.
 -  Avoid the obstacles that appear on the field.
 -  Try to score as many goals as possible to increase your score!
+
+Live Demo
+
+[Open Football Game](https://yvannguy.github.io/football-game-deploy/)
+
 
 Help
 
