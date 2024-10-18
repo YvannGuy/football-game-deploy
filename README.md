@@ -1,6 +1,6 @@
 <h1>Football Game</h1>
 
-![Football Game Screenshot 1](./images/image1.png) 
+![Football Game Screenshot 1](./images/Image1.png) 
 ![Football Game Screenshot 2](./images/image2.png) 
 
 
