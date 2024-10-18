@@ -16,6 +16,21 @@ body {
     font-family: Arial, sans-serif;
 }
 
+#scoreboard {
+    font-size: 24px; 
+    color: #ffcc00; 
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    z-index: 10; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    padding: 10px; 
+    border: 3px solid #ffcc00; 
+    border-radius: 5px; 
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5); 
+}
+
 /* Conteneur du jeu */
 #gameContainer {
     position: relative;
@@ -55,3 +70,6 @@ body {
     top: 600px;
     right: 100px;
 }
+
+
+
