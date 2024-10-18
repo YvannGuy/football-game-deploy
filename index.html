@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu de Football</title>
+    <title>Football game</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div id="gameContainer">
         <div id="ball"></div> <!-- Ball element will be created dynamically -->
     </div>
+
+    <!-- Audio elements for sound effects -->
+    <audio id="launchSound" src="./sounds/Stadium Crowd Sound Effects | 1 hour [ ezmp3.cc ].mp3" preload="auto"></audio>
+    <audio id="gameOverSound" src="./sounds/videogame-death-sound-43894.mp3" preload="auto"></audio>
 
     <script src="./js/script.js"></script>
     <script src="./js/obstacle.js"></script>

@@ -1,5 +1,9 @@
 const gameContainer = document.getElementById("gameContainer");
-const obstacles = document.querySelectorAll(".obstacle")
+const obstacles = document.querySelectorAll(".obstacle");
+
+// Load audio elements
+const launchSound = document.getElementById("launchSound");
+const gameOverSound = document.getElementById("gameOverSound");
 
 class Player {
     constructor() {
@@ -13,16 +17,16 @@ class Player {
     }
 
     createDomElement() {
-        this.domElement = document.createElement("img"); // Create an img element
-        this.domElement.src = './images/player.png'; // Path to your player image
-        this.domElement.style.width = this.width + "px"; // Set width
-        this.domElement.style.height = this.height + "px"; // Set height
-        this.domElement.style.position = "absolute"; // Positioning
-        this.domElement.style.top = this.positionY + "px"; // Set vertical position
-        this.domElement.style.left = this.positionX + "px"; // Set horizontal position
-        this.domElement.style.objectFit = "contain"; // Ensure the image fits in the element
+        this.domElement = document.createElement("img"); 
+        this.domElement.src = './images/player.png'; 
+        this.domElement.style.width = this.width + "px"; 
+        this.domElement.style.height = this.height + "px"; 
+        this.domElement.style.position = "absolute"; 
+        this.domElement.style.top = this.positionY + "px"; 
+        this.domElement.style.left = this.positionX + "px"; 
+        this.domElement.style.objectFit = "contain"; 
 
-        gameContainer.appendChild(this.domElement); // Append the image to the game container
+        gameContainer.appendChild(this.domElement); 
     }
   
     // Function to move left
@@ -45,57 +49,42 @@ class Player {
 
 // Create a new player instance
 const player = new Player();
-const ballsArray = []
-const obstacleArray = [] //you need two instances of Obstacle class in here
-// const obstacleArray = [new Obstacle(top: 100) ,new Obstacle(top: 200)]
+const ballsArray = [];
+const obstacleArray = []; // You need two instances of the Obstacle class in here
 
 // Event listener for keyboard input
 document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
         player.moveLeft(); // Move the player left
-        //console.log(player.positionX); // Log the position
     }
     if (event.key === "ArrowRight") {
         player.moveRight(); // Move the player right
-        //console.log(player.positionX); // Log the position
     }
     if (event.key === " ") {
         ballsArray.push(new Ball(player.positionX, player.positionY)); // Create a new ball instance and push to the ball array
+        launchSound.play(); // Play the launch sound when the ball is created
     }
 });
 
 // Store the interval ID to enable resetting game
 let gameInterval = setInterval(() => {
     ballsArray.forEach((ball) => {
-    [obstacle1, obstacle2].forEach((obstacle) => {
-    
-    // Collision detection - check if horizontally and vertically aligned
-    // + 430 is to adjust to the obstacle's starting positionX
-    if ((ball.positionX + 430) < (obstacle.positionX + obstacle.width) &&
-    (ball.positionX + 430) > obstacle.positionX &&
-    ball.positionY < (obstacle.positionY + obstacle.height) &&
-    (ball.positionY + ball.height) > obstacle.positionY) {
-    
-    console.log('Game over');
-    
-    // Stop the game loop before asking for replay
-    clearInterval(gameInterval);
-    
-    alert('Game over. Do you want to replay?');
-    
-    location.reload(); // Reload the entire page to restart the game
-    }
+        [obstacle1, obstacle2].forEach((obstacle) => {
+            // Collision detection - check if horizontally and vertically aligned
+            if ((ball.positionX + 430) < (obstacle.positionX + obstacle.width) &&
+                (ball.positionX + 430) > obstacle.positionX &&
+                ball.positionY < (obstacle.positionY + obstacle.height) &&
+                (ball.positionY + ball.height) > obstacle.positionY) {
+                
+                console.log('Game over');
+                gameOverSound.play(); // Play the game over sound
+                clearInterval(gameInterval); // Stop the game loop
+                
+                alert('Game over. Do you want to replay?');
+                location.reload(); // Reload the entire page to restart the game
+            }
+        });
+        
+        ball.moveUp(); // Move the ball upwards
     });
-    
-    ball.moveUp(); // Move the ball upwards
-    });
-    }, 50);
-
-
-//you need an obstacle class
-//same properties as player and ball (ex: width, height, positionX and Y)
-//method to move left and right (cannot leave the field)
-//DELETE obstacle divs in HTML, and create them through JS (just like other classes)
-
-
-
+}, 50);
