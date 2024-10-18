@@ -57,11 +57,11 @@ class Obstacle {
 }
 
 const fieldWidth = 1050;
-const obstacleImage1 = '/images/player2.png'; 
-const obstacleImage2 = '/images/player3.png';
-const obstacleImage3 = '/images/player4.jpg';
-const obstacleImage4 = '/images/player4.jpg';
-const obstacleImage5 = '/images/player5.jpg';
+const obstacleImage1 = './images/player2.png'; 
+const obstacleImage2 = './images/player3.png';
+const obstacleImage3 = './images/player4.jpg';
+const obstacleImage4 = './images/player4.jpg';
+const obstacleImage5 = './images/player5.jpg';
 
 const obstacle1 = new Obstacle(50, 80, fieldWidth, obstacleImage1 , 200, 18);
 const obstacle2 = new Obstacle(50, 80, fieldWidth, obstacleImage2 , 300, 20);
