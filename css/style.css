@@ -22,9 +22,9 @@ body {
     width: 600px;
     height: 800px;
     border: 2px solid white;
-    background-image: url('../images/soccer.png'); /* Change to your background image path */
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the image */
+    background-image: url('../images/soccer.png'); 
+    background-size: cover; 
+    background-position: center; 
 }
 
 /* Balle */
@@ -32,9 +32,9 @@ body {
     position: absolute;
     background-color: white;
     border-radius: 50%;
-    width: 20px; /* Width of the ball */
-    height: 20px; /* Height of the ball */
-    display: none; /* Initially hidden */
+    width: 20px; 
+    height: 20px; 
+    display: none; 
 }
 
 /* Obstacles */

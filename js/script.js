@@ -64,23 +64,31 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-setInterval(() => {
+// Store the interval ID to enable resetting game
+let gameInterval = setInterval(() => {
     ballsArray.forEach((ball) => {
-        obstacles.forEach((obstacle)=> {
-          //to be done (move obstacles and detect collision)
-          if(ball.positionX < (obstacle.positionX + obstacle.width)  // Ball's right edge is to the left of obstacle's right edge
-          && (ball.positionX + ball.width) > obstacle.positionX   // Ball's left edge is to the right of obstacle's left edge
-          && ball.positionY < (obstacle.positionY + obstacle.height) // Ball's bottom edge is above obstacle's bottom edge
-          && (ball.positionY + ball.height) > obstacle.positionY)
-           // Ball's top edge is below obstacle's top edge
-            {
-            console.log('game over')
-          }
-        })
-        ball.moveUp()
-    })
+    [obstacle1, obstacle2].forEach((obstacle) => {
+    
 
-} , 50)
+    if ((ball.positionX + 430) < (obstacle.positionX + obstacle.width) &&
+    (ball.positionX + 430) > obstacle.positionX &&
+    ball.positionY < (obstacle.positionY + obstacle.height) &&
+    (ball.positionY + ball.height) > obstacle.positionY) {
+    
+    console.log('Game over');
+    
+    // Stop the game loop before asking for replay
+    clearInterval(gameInterval);
+    
+    alert('Game over. Do you want to replay?');
+    
+    location.reload(); // Reload the entire page to restart the game
+    }
+    });
+    
+    ball.moveUp(); // Move the ball upwards
+    });
+    }, 50);
 
 //you need an obstacle class
 //same properties as player and ball (ex: width, height, positionX and Y)

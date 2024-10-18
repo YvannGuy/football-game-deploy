@@ -1,15 +1,16 @@
 class Obstacle {
-    constructor(width, height, fieldWidth, imageUrl, Y) {
+    constructor(width, height, fieldWidth, imageUrl, Y, speed) {
         this.width = width;
         this.height = height;
-        this.positionX = 450 + (Math.random() * (fieldWidth - 450 - width)); // Position aléatoire à l'intérieur du terrain
-        this.positionY = Y; // Position Y fixe
+        this.positionX = 450 + (Math.random() * (fieldWidth - 450 - width)); 
+        this.positionY = Y; 
         this.fieldWidth = fieldWidth;
         this.imageUrl = imageUrl;
         this.element = null;
-        this.direction = 1; // 1 pour droite, -1 pour gauche
+        this.direction = 1; 
+        this.speed = speed;
         this.createObstacle();
-        this.startMoving(); // Démarrer le mouvement aléatoire
+        this.startMoving(); 
     }
 
     createObstacle() {
@@ -26,14 +27,16 @@ class Obstacle {
     }
 
     move() {
+        console.log(`Current Speed: ${this.speed}`); // CHANGEMENT - Ligne de débogage
         if (this.positionX <= 450) {
-            this.direction = 1; // Change de direction vers la droite
+            this.direction = 1; 
         } else if (this.positionX + this.width >= this.fieldWidth) {
-            this.direction = -1; // Change de direction vers la gauche
+            this.direction = -1; 
         }
-        this.positionX += this.direction * 5; // Déplace l'obstacle de 5 pixels pour une vitesse plus rapide
+        this.positionX += this.direction * this.speed; // CHANGEMENT
         this.updatePosition();
     }
+
 
     updatePosition() {
         this.element.style.left = `${this.positionX}px`;
@@ -42,7 +45,7 @@ class Obstacle {
     startMoving() {
         setInterval(() => {
             this.move();
-        }, 100); // Change la position toutes les 100 ms
+        }, 100); 
     }
 
     removeObstacle() {
@@ -54,8 +57,14 @@ class Obstacle {
 }
 
 const fieldWidth = 1050;
-const obstacleImage1 = '../images/player2.png';
+const obstacleImage1 = '../images/player2.png'; 
 const obstacleImage2 = '../images/player3.png';
+const obstacleImage3 = '../images/player4.png';
+const obstacleImage4 = '../images/player4.png';
+const obstacleImage5 = '../images/player5.jpg';
 
-const obstacle1 = new Obstacle(100, 80, fieldWidth, obstacleImage1 , 200);
-const obstacle2 = new Obstacle(100, 80, fieldWidth, obstacleImage2 , 400);
+const obstacle1 = new Obstacle(50, 80, fieldWidth, obstacleImage1 , 200, 18);
+const obstacle2 = new Obstacle(50, 80, fieldWidth, obstacleImage2 , 300, 20);
+const obstacle3 = new Obstacle(50, 80, fieldWidth, obstacleImage2 , 100, 15);
+const obstacle4 = new Obstacle(50, 80, fieldWidth, obstacleImage2 , 20, 25);
+const obstacle5 = new Obstacle(50, 80, fieldWidth, obstacleImage2 , 400, 25);
