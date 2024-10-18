@@ -27,13 +27,13 @@ class Obstacle {
     }
 
     move() {
-        console.log(`Current Speed: ${this.speed}`); // CHANGEMENT - Ligne de débogage
+        console.log(`Current Speed: ${this.speed}`); 
         if (this.positionX <= 450) {
             this.direction = 1; 
         } else if (this.positionX + this.width >= this.fieldWidth) {
             this.direction = -1; 
         }
-        this.positionX += this.direction * this.speed; // CHANGEMENT
+        this.positionX += this.direction * this.speed; 
         this.updatePosition();
     }
 
