@@ -1,7 +1,7 @@
 <h1>Football Game</h1>
 
-![Football Game Screenshot 1](./images/Image1.png) 
-![Football Game Screenshot 2](./images/Image2.png) 
+<img src="./images/Image1.png" alt="Football Game Screenshot 1" width="300"/> 
+<img src="./images/Image2.png" alt="Football Game Screenshot 2" width="300"/>  
 
 
 <h2>Description</h2>
