@@ -1,33 +1,61 @@
-const obstacle1Container = document.getElementsByClassName("obstacle1")
-const obstacle2Container = document.getElementsByClassName("obstacle2")
-
 class Obstacle {
-    constructor(){
-        this.width = 20;
-        this.height = 10;
-        this.positionX = Math.floor(Math.random() * (100 - this.width + 1)); // random number between 0 and (100 - this.width)
-        this.positionY = 100;
-        this.domElement = null;
-
-        this.createDomElement();
+    constructor(width, height, fieldWidth, imageUrl, Y) {
+        this.width = width;
+        this.height = height;
+        this.positionX = 450 + (Math.random() * (fieldWidth - 450 - width)); // Position aléatoire à l'intérieur du terrain
+        this.positionY = Y; // Position Y fixe
+        this.fieldWidth = fieldWidth;
+        this.imageUrl = imageUrl;
+        this.element = null;
+        this.direction = 1; // 1 pour droite, -1 pour gauche
+        this.createObstacle();
+        this.startMoving(); // Démarrer le mouvement aléatoire
     }
-    createDomElement() {
-        // step1: create the element
-        this.domElement = document.createElement("div");
 
-        // step2: add content or modify (ex. innerHTML...)
-        this.domElement.className = "obstacle";
-        this.domElement.style.width = this.width + "vw";
-        this.domElement.style.height = this.height + "vh";
-        this.domElement.style.left = this.positionX + "vw";
-        this.domElement.style.bottom = this.positionY + "vh";
-
-        //step3: append to the dom: `parentElm.appendChild()`
-        const board = document.getElementById("board");
-        board.appendChild(this.domElement);
+    createObstacle() {
+        this.element = document.createElement('div');
+        this.element.classList.add('obstacle');
+        this.element.style.width = `${this.width}px`;
+        this.element.style.height = `${this.height}px`;
+        this.element.style.position = 'absolute';
+        this.element.style.left = `${this.positionX}px`;
+        this.element.style.top = `${this.positionY}px`;
+        this.element.style.backgroundImage = `url(${this.imageUrl})`;
+        this.element.style.backgroundSize = 'cover';
+        document.body.appendChild(this.element);
     }
-    moveDown(){
-        this.positionY--;
-        this.domElement.style.bottom = this.positionY + "vh";
+
+    move() {
+        if (this.positionX <= 450) {
+            this.direction = 1; // Change de direction vers la droite
+        } else if (this.positionX + this.width >= this.fieldWidth) {
+            this.direction = -1; // Change de direction vers la gauche
+        }
+        this.positionX += this.direction * 5; // Déplace l'obstacle de 5 pixels pour une vitesse plus rapide
+        this.updatePosition();
+    }
+
+    updatePosition() {
+        this.element.style.left = `${this.positionX}px`;
+    }
+
+    startMoving() {
+        setInterval(() => {
+            this.move();
+        }, 100); // Change la position toutes les 100 ms
+    }
+
+    removeObstacle() {
+        if (this.element) {
+            document.body.removeChild(this.element);
+            this.element = null;
+        }
     }
 }
+
+const fieldWidth = 1050;
+const obstacleImage1 = '../images/player2.png';
+const obstacleImage2 = '../images/player3.png';
+
+const obstacle1 = new Obstacle(100, 80, fieldWidth, obstacleImage1 , 200);
+const obstacle2 = new Obstacle(100, 80, fieldWidth, obstacleImage2 , 400);

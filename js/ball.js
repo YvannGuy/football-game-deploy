@@ -17,7 +17,8 @@ class Ball {
         this.domElement.style.height = this.height + "px"; // Set height
         this.domElement.style.left = this.positionX + "px"; // Set horizontal position
         this.domElement.style.top = this.positionY + "px"; // Set vertical position
-
+        this.domElement.style.position = "absolute"
+        this.domElement.style.backgroundColor = "red"
         const board = document.getElementById("gameContainer");
         board.appendChild(this.domElement); // Append the ball to the game container
     }

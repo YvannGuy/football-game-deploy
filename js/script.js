@@ -1,4 +1,5 @@
 const gameContainer = document.getElementById("gameContainer");
+const obstacles = document.querySelectorAll(".obstacle")
 
 class Player {
     constructor() {
@@ -44,6 +45,9 @@ class Player {
 
 // Create a new player instance
 const player = new Player();
+const ballsArray = []
+const obstacleArray = [] //you need two instances of Obstacle class in here
+// const obstacleArray = [new Obstacle(top: 100) ,new Obstacle(top: 200)]
 
 // Event listener for keyboard input
 document.addEventListener("keydown", (event) => {
@@ -56,39 +60,27 @@ document.addEventListener("keydown", (event) => {
         console.log(player.positionX); // Log the position
     }
     if (event.key === " ") {
-        const newBall = new Ball(player.positionX, player.positionY); // Create a new ball instance
+        ballsArray.push(new Ball(player.positionX, player.positionY)); // Create a new ball instance and push to the ball array
+        console.log(ballsArray)
     }
 });
 
-class Ball {
-    constructor(initialPositionX, initialPositionY) {
-        // Values that will be used to style the DOM element
-        this.width = 20; // Width of the ball
-        this.height = 20; // Height of the ball
-        this.positionX = initialPositionX; // Initial horizontal position
-        this.positionY = initialPositionY; // Initial vertical position
-        this.domElement = null; // Variable that will hold the DOM element
-        this.velocity = 15; // Speed of the ball
-        this.createDomElement(); // Call the function to create the DOM element
-    }
+setInterval(() => {
+    ballsArray.forEach((ball) => {
+        obstacles.forEach((obstacle)=> {
+          //to be done (move obstacles and detect collision)
+            
+        })
+        ball.moveUp()
+    })
 
-    createDomElement() {
-        this.domElement = document.createElement("div"); // Create a div for the ball
-        this.domElement.className = "ball"; // Set the class for styling
-        this.domElement.style.width = this.width + "px"; // Set width
-        this.domElement.style.height = this.height + "px"; // Set height
-        this.domElement.style.left = this.positionX + "px"; // Set horizontal position
-        this.domElement.style.top = this.positionY + "px"; // Set vertical position
+    
+} , 50)
 
-        const board = document.getElementById("gameContainer");
-        board.appendChild(this.domElement); // Append the ball to the game container
-    }
+//you need an obstacle class
+//same properties as player and ball (ex: width, height, positionX and Y)
+//method to move left and right (cannot leave the field)
+//DELETE obstacle divs in HTML, and create them through JS (just like other classes)
 
-    moveUp() {
-        // Check if the ball is not out of bounds
-        if (this.positionY > 0) {
-            this.positionY -= this.velocity; // Move the ball upwards
-            this.domElement.style.top = this.positionY + "px"; // Update the position
-        }
-    }
-}
+
+
