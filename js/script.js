@@ -53,15 +53,14 @@ const obstacleArray = [] //you need two instances of Obstacle class in here
 document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
         player.moveLeft(); // Move the player left
-        console.log(player.positionX); // Log the position
+        //console.log(player.positionX); // Log the position
     }
     if (event.key === "ArrowRight") {
         player.moveRight(); // Move the player right
-        console.log(player.positionX); // Log the position
+        //console.log(player.positionX); // Log the position
     }
     if (event.key === " ") {
         ballsArray.push(new Ball(player.positionX, player.positionY)); // Create a new ball instance and push to the ball array
-        console.log(ballsArray)
     }
 });
 
@@ -69,12 +68,18 @@ setInterval(() => {
     ballsArray.forEach((ball) => {
         obstacles.forEach((obstacle)=> {
           //to be done (move obstacles and detect collision)
-            
+          if(ball.positionX < (obstacle.positionX + obstacle.width)  // Ball's right edge is to the left of obstacle's right edge
+          && (ball.positionX + ball.width) > obstacle.positionX   // Ball's left edge is to the right of obstacle's left edge
+          && ball.positionY < (obstacle.positionY + obstacle.height) // Ball's bottom edge is above obstacle's bottom edge
+          && (ball.positionY + ball.height) > obstacle.positionY)
+           // Ball's top edge is below obstacle's top edge
+            {
+            console.log('game over')
+          }
         })
         ball.moveUp()
     })
 
-    
 } , 50)
 
 //you need an obstacle class
